@@ -1,0 +1,35 @@
+import pgzrun
+WIDTH=800
+HEIGHT=800
+TITLE="game"
+q1_box=Rect(50,350,240,150)
+q2_box=Rect(320,350,240,150)
+q3_box=Rect(50,550,240,150)
+q4_box=Rect(320,550,240,150)
+skip_box=Rect(600,350,150,400)
+fancy_thing=Rect(0,0,800,80)
+timer_box=Rect(600,150,150,150)
+question_box=Rect(50,150,500,150)
+def draw():
+    screen.draw.filled_rect(q1_box,"orange")
+    screen.draw.filled_rect(q2_box,"orange")
+    screen.draw.filled_rect(q3_box,"orange")
+    screen.draw.filled_rect(q4_box,"orange")
+    screen.draw.filled_rect(skip_box,"green")
+    screen.draw.filled_rect(fancy_thing,"gray")
+    screen.draw.filled_rect(timer_box,"white")
+    screen.draw.filled_rect(question_box,"orange")
+    screen.draw.textbox("how are u?",question_box,color="white")
+def file_reading():
+    q=open("questions.txt","r")
+    all_questions=q.readlines()
+    print(all_questions)
+file_reading()
+
+
+
+
+
+def update():
+    pass
+pgzrun.go()
