@@ -2,6 +2,13 @@ import pgzrun
 WIDTH=800
 HEIGHT=800
 TITLE="game"
+totall=0
+all_questions=[]
+question_num=0
+question=[]
+timer=10
+game_over=False
+
 q1_box=Rect(50,350,240,150)
 q2_box=Rect(320,350,240,150)
 q3_box=Rect(50,550,240,150)
@@ -17,16 +24,43 @@ def draw():
     screen.draw.filled_rect(q4_box,"orange")
     screen.draw.filled_rect(skip_box,"green")
     screen.draw.filled_rect(fancy_thing,"gray")
-    screen.draw.filled_rect(timer_box,"white")
+    screen.draw.filled_rect(timer_box,"gray")
     screen.draw.filled_rect(question_box,"orange")
-    screen.draw.textbox("how are u?",question_box,color="white")
+    screen.draw.textbox(question[0],question_box,color="white")
+    screen.draw.textbox(question[1],q1_box,color="white")
+    screen.draw.textbox(question[2],q2_box,color="white")
+    screen.draw.textbox(question[3],q3_box,color="white")
+    screen.draw.textbox(question[4],q4_box,color="white")
+    screen.draw.textbox(":)",fancy_thing,color="white")
+    screen.draw.textbox(str(timer),timer_box,color="white")
+    screen.draw.textbox("skip",skip_box,color="white")
+
+
 def file_reading():
+    global all_questions
+    global totall
     q=open("questions.txt","r")
     all_questions=q.readlines()
-    print(all_questions)
+    totall=len(all_questions)
 file_reading()
+def read_question():
+    global question
+    question=all_questions[question_num].split(",")
+    print (question)
+read_question()
+
+def update_time():
+    global game_over
+    global timer
+    if timer <= 0:
+        game_over=True
+    else:
+        timer=timer-1
+
+        
 
 
+clock.schedule_interval(update_time,1)
 
 
 
